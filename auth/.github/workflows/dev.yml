@@ -1,0 +1,35 @@
+name: Authv2_Service_Actions_DEV
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+
+#Один из вариантов деплоя через ssh
+#Или можно было через gitlab docker runner
+  deploy_dev:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to VPS dev with SSH ACTION
+        uses: appleboy/ssh-action@v0.1.6
+        env:
+          GTOKEN: ${{ secrets.DEV_TOKEN_GITHUB }}
+        with:
+          host: ${{ secrets.DEV_SSH_HOST }}
+          username: ${{ secrets.DEV_SSH_USER }}
+          password: ${{ secrets.DEV_SSH_PASS }}
+          port: ${{ secrets.DEV_SSH_PORT }}
+          envs: GTOKEN
+          script:  |
+            docker rm $(docker ps -qa --filter status=exited )
+            docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
+            cd /var/www/auth 
+            git pull
+            docker stop auth
+            docker rm -f auth
+            docker build  -t auth .
+            docker run -d --name auth -p 9091:9091 -p 24000:24000  auth
+
+
