@@ -1,0 +1,84 @@
+definitions:
+  models.User:
+    properties:
+      balance:
+        type: number
+      created_at:
+        type: string
+      first_name:
+        type: string
+      group_number:
+        type: string
+      id:
+        type: string
+      last_name:
+        type: string
+      login:
+        type: string
+      middle_name:
+        type: string
+      updated_at:
+        type: string
+    required:
+    - first_name
+    - group_number
+    - last_name
+    - middle_name
+    type: object
+  models.UserChangeBalanceRequest:
+    properties:
+      balance:
+        type: number
+      id:
+        type: string
+    required:
+    - balance
+    - id
+    type: object
+info:
+  contact: {}
+paths:
+  /student/balance/add:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Тело
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserChangeBalanceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Изменить баланс (долг) студента. Принимает положительные или отрицательные
+        значения баланса.
+      tags:
+      - Users
+  /student/new:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Тело
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      summary: Регистрация.
+      tags:
+      - Users
+swagger: "2.0"
