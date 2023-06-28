@@ -9,7 +9,8 @@ import (
 
 // TODO: при сборке на среды (дев, тест, прод) это все вынести в динамичный конфиг
 var RouteMap = map[string]string{
-	"/api/auth": "http://auth:9091",
+	"/api/auth":       "http://auth:9091",
+	"/api/algosolver": "http://algosolver:9092",
 }
 
 type Server struct {

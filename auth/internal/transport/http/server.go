@@ -72,6 +72,7 @@ func (s *Server) CreateUser(ctx *fasthttp.RequestCtx, resp *pkg.Response) {
 		resp.SetError(2, err.Error())
 		return
 	}
+
 	user.CreateLogin()
 	now := time.Now().UTC()
 	if err := s.db.QueryRow(context.Background(),
@@ -137,7 +138,6 @@ func (s *Server) ChangeUserBalance(ctx *fasthttp.RequestCtx, resp *pkg.Response)
 	}
 
 	user.Balance = newBalance
-	log.Println(userBody.Balance + user.Balance)
 	resp.SetValue(user)
 }
 

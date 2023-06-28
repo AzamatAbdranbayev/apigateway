@@ -20,6 +20,8 @@ services:
     ports:
       - 9090:9090
     restart: always
+    depends_on:
+      - postgres
 
   auth:
     container_name: auth
@@ -30,15 +32,20 @@ services:
       - 9091:9091
       - 24000:24000
     restart: always
+    depends_on:
+      - postgres
 
-#  builder:
-#    container_name: builder
-#    tty: true
-#    build:
-#      context: /builder/.
-#    ports:
-#      - 9093:9091
-#    restart: always
+  algosolver:
+    container_name: algosolver
+    tty: true
+    build:
+      context: ./algosolver/.
+    ports:
+      - 9092:9092
+      - 24001:24001
+    restart: always
+    depends_on:
+      - postgres
 
 
 

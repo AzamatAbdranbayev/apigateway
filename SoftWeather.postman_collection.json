@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "39ef1582-6f30-4712-b7ad-2fdc2c87eebe",
+		"name": "SoftWeather",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13644865"
+	},
+	"item": [
+		{
+			"name": "изменить баланс",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\":\"71ebe4fd-82c9-43b9-ba2e-780bb31df72c\",\n   \"balance\":-40\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/auth/student/balance/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"auth",
+						"student",
+						"balance",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "создать пользователя",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\":\"test\",\n    \"last_name\":\"test1\",\n    \"middle_name\":\"test2\",\n    \"group_number\":\"test_43\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/auth/student/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"auth",
+						"student",
+						"new"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "получить решение",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"05b99911-af78-4b50-8ced-800992799a2a\",\n    \"user_id\":\"71ebe4fd-82c9-43b9-ba2e-780bb31df72c\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/algosolver/task/solution",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"algosolver",
+						"task",
+						"solution"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "изменить цену задачки",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"05b99911-af78-4b50-8ced-800992799a2a\",\n    \"cost\":100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/algosolver/task/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"algosolver",
+						"task",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "получить список по пользователю",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\":\"71ebe4fd-82c9-43b9-ba2e-780bb31df72c\",\n    \"limit\":2,\n    \"page\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/algosolver/task/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"algosolver",
+						"task",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

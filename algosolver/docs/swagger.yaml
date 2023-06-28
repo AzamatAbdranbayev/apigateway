@@ -1,0 +1,111 @@
+definitions:
+  models.TaskPriceRequest:
+    properties:
+      cost:
+        type: number
+      id:
+        type: string
+    required:
+    - cost
+    - id
+    type: object
+  models.TaskSolutionRequest:
+    properties:
+      id:
+        type: string
+      user_id:
+        type: string
+    required:
+    - id
+    - user_id
+    type: object
+  models.TaskSolutionResponse:
+    properties:
+      answer:
+        type: string
+      description:
+        type: string
+      input:
+        type: string
+    type: object
+  models.UserTaskHistoryRequest:
+    properties:
+      limit:
+        type: number
+      page:
+        type: number
+      user_id:
+        type: string
+    required:
+    - limit
+    - user_id
+    type: object
+info:
+  contact: {}
+paths:
+  /task/list:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Тело
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.UserTaskHistoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.UserTaskHistoryRequest'
+            type: array
+      summary: Получить список задач.
+      tags:
+      - Tasks
+  /task/price:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Тело
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.TaskPriceRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TaskPriceRequest'
+      summary: Изменить стоимость задачи
+      tags:
+      - Tasks
+  /task/solution:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Тело
+        in: body
+        name: Body
+        required: true
+        schema:
+          $ref: '#/definitions/models.TaskSolutionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.TaskSolutionResponse'
+      summary: Получить решение задачи.
+      tags:
+      - Tasks
+swagger: "2.0"

@@ -1,0 +1,174 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/task/list": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Получить список задач.",
+                "parameters": [
+                    {
+                        "description": "Тело",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UserTaskHistoryRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/models.UserTaskHistoryRequest"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/task/price": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Изменить стоимость задачи",
+                "parameters": [
+                    {
+                        "description": "Тело",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TaskPriceRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.TaskPriceRequest"
+                        }
+                    }
+                }
+            }
+        },
+        "/task/solution": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Tasks"
+                ],
+                "summary": "Получить решение задачи.",
+                "parameters": [
+                    {
+                        "description": "Тело",
+                        "name": "Body",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.TaskSolutionRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/models.TaskSolutionResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "models.TaskPriceRequest": {
+            "type": "object",
+            "required": [
+                "cost",
+                "id"
+            ],
+            "properties": {
+                "cost": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TaskSolutionRequest": {
+            "type": "object",
+            "required": [
+                "id",
+                "user_id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.TaskSolutionResponse": {
+            "type": "object",
+            "properties": {
+                "answer": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "input": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UserTaskHistoryRequest": {
+            "type": "object",
+            "required": [
+                "limit",
+                "user_id"
+            ],
+            "properties": {
+                "limit": {
+                    "type": "number"
+                },
+                "page": {
+                    "type": "number"
+                },
+                "user_id": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
